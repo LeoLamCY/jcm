@@ -1,0 +1,861 @@
+ 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #895d39 50%, #8a5d39ba 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #F5E6D3;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            max-width: 100% !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-image: url("https://img.localchinese.com/website/JCM%20GARAGE%20DOOR/images/WechatIMG1702.jpg");
+        }
+
+        .hero-content {
+
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #F5E6D3, #E8D5B7);
+            color: #8B6F47;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(245, 230, 211, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 230, 211, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #8B6F47;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #F5E6D3, #E8D5B7);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #E8D5B7;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 111, 71, 0.15);
+        }
+
+        .service-card h3 {
+            color: #8B6F47;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Showcase Section */
+        .showcase {
+            background: linear-gradient(135deg, #f8f9fa 0%, #F5E6D3 100%);
+            padding: 5rem 2rem;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .showcase-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .showcase-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 111, 71, 0.15);
+        }
+
+        .showcase-image {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8B6F47;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .showcase-content {
+            padding: 1.5rem;
+        }
+
+        .showcase-content h3 {
+            color: #8B6F47;
+            margin-bottom: 0.5rem;
+        }
+
+        .showcase-content p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, #F5E6D3 0%, #E8D5B7 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: #8B6F47;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .feature {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .feature h4 {
+            color: #8B6F47;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #8B6F47 0%, #A0845C 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item h4 {
+            color: #F5E6D3;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-item p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .emergency-notice {
+            background: linear-gradient(45deg, #dc3545, #c82333);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: center;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c2c2c;
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #F5E6D3;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: #F5E6D3;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #999;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #8B6F47;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .showcase-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+           .hero-content {
+
+              padding: 1rem;
+              animation: fadeInUp 1s ease-out;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .service-card, .showcase-item {
+                padding: 1.5rem;
+            }
+
+            .about, .contact {
+                padding: 2rem;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+ 
+         .header-text-alt {
+            text-align: center;
+            margin: 40px 0 20px 0;
+            letter-spacing: 2px;
+        }
+        
+        .break-mobile {
+            display: inline;
+        }
+        
+        @media (max-width: 768px) {
+ 
+    
+            .break-mobile {
+                display: block;
+            }
+        }
+
+    </style>
+ 
+    <!-- Header -->
+    <header style="background: linear-gradient(135deg, rgb(137, 93, 57) 50%, rgba(138, 93, 57, 0.73) 100%); backdrop-filter: none;">
+        <nav>
+            <div class="logo">
+                <img src="https://img.localchinese.com/website/JCM%20GARAGE%20DOOR/images/logo.jpg" alt="">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#showcase">Showcase</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="header-text-alt">JCM <span class="break-mobile">GARAGE DOOR</span>
+            <p>Professional Garage Door Services You Can Trust</p>
+            <a href="#contact" class="cta-button">Get Free Estimate</a>
+        </h1></div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title fade-in visible">Our Services</h2>
+        
+<!--        <div class="emergency-notice fade-in">-->
+<!--            🚨 24/7 Emergency Garage Door Repair Available 🚨-->
+<!--        </div>-->
+
+        <div class="services-grid">
+            <div class="service-card fade-in visible">
+                <h3>Garage Door Repair</h3>
+                <p>Professional repair services for all types of garage doors. We diagnose and fix issues quickly and efficiently.</p>
+            </div>
+            
+            <div class="service-card fade-in visible" style="transform: translateY(0px) scale(1);">
+                <h3>New Garage Door Installation</h3>
+                <p>Complete installation of new garage doors with professional setup and quality assurance.</p>
+            </div>
+            
+            <div class="service-card fade-in visible" style="transform: translateY(0px) scale(1);">
+                <h3>Spring Repair &amp; Replacement</h3>
+                <p>Expert garage door spring repair and replacement services for smooth operation and safety.</p>
+            </div>
+            
+            <div class="service-card fade-in visible" style="transform: translateY(0px) scale(1);">
+                <h3>Cables Repair &amp; Replacement</h3>
+                <p>Professional cable repair and replacement to ensure your garage door operates safely.</p>
+            </div>
+            
+            <div class="service-card fade-in visible" style="transform: translateY(0px) scale(1);">
+                <h3>Opener Repair &amp; Replacement</h3>
+                <p>Garage door opener repair, replacement, and motor reprogramming services.</p>
+            </div>
+            
+            <div class="service-card fade-in visible" style="transform: translateY(0px) scale(1);">
+                <h3>Remote &amp; Keypad Services</h3>
+                <p>Garage door remote replacement, repair, and keypad installation services.</p>
+            </div>
+            
+            <div class="service-card fade-in visible" style="transform: translateY(0px) scale(1);">
+                <h3>Sensors Repair &amp; Replacement</h3>
+                <p>Professional garage door sensor repair and replacement for enhanced safety.</p>
+            </div>
+            
+            <div class="service-card fade-in visible">
+                <h3>Panel Repair &amp; Replacement</h3>
+                <p>New garage panel installation and repair services to restore your door's appearance.</p>
+            </div>
+            
+            <div class="service-card fade-in visible" style="transform: translateY(0px) scale(1);">
+                <h3>Weatherstrip &amp; Capping</h3>
+                <p>Garage door weatherstrip installation and capping services for better insulation.</p>
+            </div>
+            
+            <div class="service-card fade-in visible" style="transform: translateY(0px) scale(1);">
+                <h3>Maintenance &amp; Tune-Up</h3>
+                <p>Regular maintenance and tune-up services to keep your garage door in perfect condition.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Section -->
+    <section id="showcase" class="showcase">
+        <h2 class="section-title fade-in visible">Our Work Showcase</h2>
+        <p style="text-align: center; color: #666; font-size: 1.1rem; margin-bottom: 2rem;">See examples of our professional garage door installations and repairs</p>
+        
+        <div class="showcase-grid">
+            <div class="showcase-item fade-in visible" style="transform: translateY(0px) scale(1);">
+                <div class="showcase-image" style="background-image: url('https://img.localchinese.com/website/JCM%20GARAGE%20DOOR/images/1.jpg');')"></div>
+                <div class="showcase-content">
+                    <h3>Modern Residential Door</h3>
+                    <p>Complete installation of contemporary garage door with smart opener system</p>
+                </div>
+            </div>
+            
+            <div class="showcase-item fade-in visible">
+                <div class="showcase-image" style="background-image: url('https://img.localchinese.com/website/JCM%20GARAGE%20DOOR/images/WechatIMG1700.jpg');')"></div>
+                <div class="showcase-content">
+                    <h3>Spring System Repair</h3>
+                    <p>Professional spring replacement ensuring smooth and safe operation</p>
+                </div>
+            </div>
+            
+            <div class="showcase-item fade-in visible">
+                <div class="showcase-image" style="background-image: url('https://img.localchinese.com/website/JCM%20GARAGE%20DOOR/images/WechatIMG1701.jpg');')"></div>
+                <div class="showcase-content">
+                    <h3>Commercial Installation</h3>
+                    <p>Heavy-duty commercial garage door installation with advanced security features</p>
+                </div>
+            </div>
+            
+            <div class="showcase-item fade-in visible" style="transform: translateY(0px) scale(1);">
+                <div class="showcase-image" style="background-image: url('https://img.localchinese.com/website/JCM%20GARAGE%20DOOR/images/8.jpg'); background-position: top center"></div>
+                <div class="showcase-content">
+                    <h3>Emergency Service</h3>
+                    <p>24/7 emergency repair service - door back to working condition within hours</p>
+                </div>
+            </div>
+            
+            <div class="showcase-item fade-in visible">
+                <div class="showcase-image" style="background-image: url('https://img.localchinese.com/website/JCM%20GARAGE%20DOOR/images/4.jpg');')"></div>
+                <div class="showcase-content">
+                    <h3>Custom Door Design</h3>
+                    <p>Bespoke garage door design matching architectural style and preferences</p>
+                </div>
+            </div>
+            
+            <div class="showcase-item fade-in visible" style="transform: translateY(0px) scale(1);">
+                <div class="showcase-image" style="background-image: url('https://img.localchinese.com/website/JCM%20GARAGE%20DOOR/images/7.jpg');')"></div>
+                <div class="showcase-content">
+                    <h3>Security Enhancement</h3>
+                    <p>Advanced security system integration with keypad and remote access</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title fade-in visible">About JCM Garage Door</h2>
+        
+        <div class="about fade-in visible">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Professional Garage Door Experts</h3>
+                    <p>At JCM Garage Door, we provide comprehensive garage door services with a commitment to quality, reliability, and customer satisfaction. Our experienced team handles everything from emergency repairs to complete installations.</p>
+                </div>
+                
+                <div class="features">
+                    <div class="feature">
+                        <h4>🔧 Expert Technicians</h4>
+                        <p>Skilled professionals with years of experience</p>
+                    </div>
+                    <div class="feature">
+                        <h4>⚡ Fast Service</h4>
+                        <p>Quick response times for all service calls</p>
+                    </div>
+                    <div class="feature">
+                        <h4>💯 Quality Guarantee</h4>
+                        <p>We stand behind all our work with warranties</p>
+                    </div>
+                    <div class="feature">
+                        <h4>🏠 Local Service</h4>
+                        <p>Proudly serving the local community</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact fade-in visible">
+            <h2 class="section-title" style="color: white;">Contact Us</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Ready to get your garage door fixed? Contact us today for professional service!</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h4>📧 Email</h4>
+                    <p>Jcmgaragedoor666@gmail.com</p>
+                </div>
+                
+                <div class="contact-item">
+                    <h4>👤 Contact </h4>
+                    <p>(437) 988-3618</p>
+                </div>
+                
+                <div class="contact-item">
+                    <h4>🕐 Service Hours</h4>
+                    <p>Regular Hours: Mon-Sun 9AM-9PM</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <a href="mailto:Jcmgaragedoor666@gmail.com" class="cta-button">Send Email</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>JCM Garage Door</h3>
+                <p>Professional garage door services you can trust. We're committed to providing quality workmanship and excellent customer service.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <p>• Garage Door Repair</p>
+                <p>• New Door Installation</p>
+                <p>• Spring &amp; Cable Repair</p>
+                <p>• Opener Repair &amp; Programming</p>
+                <p>• Emergency 24/7 Service</p>
+                <p>• Maintenance &amp; Tune-ups</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <a href="mailto:Jcmgaragedoor666@gmail.com">📧 Jcmgaragedoor666@gmail.com</a>
+                <p>👤 Contact: (437) 988-3618</p>
+<!--                <p>🕐 24/7 Emergency Service</p>-->
+                <p>🕐 Regular Hours: Mon-Sun 9AM-9PM</p>
+            </div>
+<!--            <div class="footer-section">-->
+<!--                <h3>Service Areas</h3>-->
+<!--                <p>We proudly serve the local community with professional garage door services.</p>-->
+<!--&lt;!&ndash;                <p style="margin-top: 1rem; font-weight: bold; color: #F5E6D3;">🚨 Emergency Service Available 24/7</p>&ndash;&gt;-->
+<!--            </div>-->
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2024 JCM Garage Door. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = '#895d39';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #895d39 50%, #8a5d39ba 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Add some interactive hover effects
+        document.querySelectorAll('.service-card, .showcase-item').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Emergency notice animation
+        const emergencyNotice = document.querySelector('.emergency-notice');
+        if (emergencyNotice) {
+            setInterval(() => {
+                emergencyNotice.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    emergencyNotice.style.transform = 'scale(1)';
+                }, 200);
+            }, 3000);
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.querySelector('.nav-links');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (!navLinks.contains(event.target) && !mobileMenu.contains(event.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+ 
