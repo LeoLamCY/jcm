@@ -517,6 +517,166 @@
             transform: translateY(0);
         }
 
+        /* ─── PAGINATED GALLERY ─── */
+        #gallery {
+            background: var(--white);
+            padding: 8rem 2rem;
+        }
+
+        .photo-gallery-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .photo-gallery-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .photo-gallery-header p {
+            color: var(--gray);
+            font-size: 1rem;
+            margin-top: 1rem;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .photo-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            min-height: 930px;
+        }
+
+        .photo-gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            background: var(--cream-bg);
+            border: 2px solid rgba(137, 93, 57, 0.32);
+            box-shadow: 0 10px 30px rgba(74, 44, 14, 0.08);
+            aspect-ratio: 1 / 1;
+            cursor: pointer;
+        }
+
+        .photo-gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.45s ease;
+        }
+
+        .photo-gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .photo-gallery-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .gallery-page-button {
+            appearance: none;
+            border: 1px solid var(--brown-primary);
+            background: transparent;
+            color: var(--brown-primary);
+            padding: 0.8rem 1.35rem;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.22s ease;
+        }
+
+        .gallery-page-button:hover:not(:disabled) {
+            background: var(--brown-primary);
+            color: white;
+        }
+
+        .gallery-page-button:disabled {
+            opacity: 0.35;
+            cursor: default;
+        }
+
+        .gallery-page-indicator {
+            min-width: 120px;
+            text-align: center;
+            color: var(--brown-dark);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .gallery-lightbox {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: rgba(18, 11, 5, 0.86);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+            z-index: 2000;
+        }
+
+        .gallery-lightbox.open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .gallery-lightbox-dialog {
+            position: relative;
+            width: min(92vw, 1080px);
+            max-height: 88vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-lightbox-image {
+            width: auto;
+            max-width: 100%;
+            max-height: 88vh;
+            display: block;
+            border-radius: 14px;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+            background: white;
+        }
+
+        .gallery-lightbox-close {
+            position: absolute;
+            top: -0.9rem;
+            right: -0.9rem;
+            width: 44px;
+            height: 44px;
+            border: none;
+            border-radius: 999px;
+            background: white;
+            color: var(--brown-dark);
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .gallery-lightbox-close:hover {
+            transform: scale(1.05);
+            background: var(--cream-light);
+        }
+
         /* ─── CONTACT ─── */
         #contact {
             background: linear-gradient(135deg, var(--brown-primary) 0%, var(--brown-dark) 100%);
@@ -799,6 +959,7 @@
 
             #services,
             #why-us,
+            #showcase,
             #gallery,
             #contact { padding: 5rem 1.5rem; }
 
@@ -807,6 +968,11 @@
             .gallery-grid {
                 grid-template-columns: 1fr;
                 grid-template-rows: repeat(6, 220px);
+            }
+
+            .photo-gallery-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                min-height: auto;
             }
 
             .footer-inner { grid-template-columns: 1fr; }
@@ -829,6 +995,19 @@
             .hero-content { padding: 1.5rem; }
 
             .hero-tagline { font-size: 1rem; }
+
+            .photo-gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-lightbox {
+                padding: 1rem;
+            }
+
+            .gallery-lightbox-close {
+                top: 0.75rem;
+                right: 0.75rem;
+            }
         }
     </style>
 </head>
@@ -845,7 +1024,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#why-us">About</a></li>
-                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#gallery">Work Showcase</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
 
@@ -864,7 +1043,7 @@
         <a href="#home">Home</a>
         <a href="#services">Services</a>
         <a href="#why-us">About</a>
-        <a href="#gallery">Gallery</a>
+        <a href="#gallery">Work Showcase</a>
         <a href="#contact">Contact</a>
         <a href="#contact">Get Free Estimate</a>
     </nav>
@@ -1015,69 +1194,33 @@
         </div>
     </section>
 
-    <!-- ─── GALLERY ─── -->
-    <section id="gallery" aria-labelledby="gallery-heading">
-        <div class="gallery-inner">
+    <!-- ─── WORK SHOWCASE ─── -->
+    <section id="gallery" aria-labelledby="photo-gallery-heading">
+        <div class="photo-gallery-inner">
 
-            <div class="gallery-header fade-up">
+            <div class="photo-gallery-header fade-up">
                 <span class="section-label">Our Work</span>
-                <h2 class="section-heading" id="gallery-heading">Work Showcase</h2>
-                <p>See examples of our professional garage door installations and repairs.</p>
+                <h2 class="section-heading" id="photo-gallery-heading">Work Showcase</h2>
+                <p>Browse our recent garage door work.</p>
             </div>
 
-            <div class="gallery-grid" role="list">
+            <div class="photo-gallery-grid" id="photo-gallery-grid" aria-live="polite"></div>
 
-                <div class="gallery-item fade-up" role="listitem">
-                    <img src="https://img.localchinese.com/website/JCM%20GARAGE%20DOOR/images/1.jpg"
-                         alt="Modern residential garage door installation" loading="lazy">
-                    <div class="gallery-overlay" aria-hidden="true">
-                        <span class="gallery-caption">Modern Residential Door</span>
-                    </div>
-                </div>
-
-                <div class="gallery-item fade-up" role="listitem">
-                    <img src="https://img.localchinese.com/website/JCM%20GARAGE%20DOOR/images/WechatIMG1700.jpg"
-                         alt="Spring system repair" loading="lazy">
-                    <div class="gallery-overlay" aria-hidden="true">
-                        <span class="gallery-caption">Spring System Repair</span>
-                    </div>
-                </div>
-
-                <div class="gallery-item fade-up" role="listitem">
-                    <img src="https://img.localchinese.com/website/JCM%20GARAGE%20DOOR/images/WechatIMG1701.jpg"
-                         alt="Commercial garage door installation" loading="lazy">
-                    <div class="gallery-overlay" aria-hidden="true">
-                        <span class="gallery-caption">Commercial Installation</span>
-                    </div>
-                </div>
-
-                <div class="gallery-item fade-up" role="listitem">
-                    <img src="https://img.localchinese.com/website/JCM%20GARAGE%20DOOR/images/8.jpg"
-                         alt="Emergency garage door service" loading="lazy">
-                    <div class="gallery-overlay" aria-hidden="true">
-                        <span class="gallery-caption">Emergency Service</span>
-                    </div>
-                </div>
-
-                <div class="gallery-item fade-up" role="listitem">
-                    <img src="https://img.localchinese.com/website/JCM%20GARAGE%20DOOR/images/4.jpg"
-                         alt="Custom garage door design" loading="lazy">
-                    <div class="gallery-overlay" aria-hidden="true">
-                        <span class="gallery-caption">Custom Door Design</span>
-                    </div>
-                </div>
-
-                <div class="gallery-item fade-up" role="listitem">
-                    <img src="https://img.localchinese.com/website/JCM%20GARAGE%20DOOR/images/7.jpg"
-                         alt="Security enhancement installation" loading="lazy">
-                    <div class="gallery-overlay" aria-hidden="true">
-                        <span class="gallery-caption">Security Enhancement</span>
-                    </div>
-                </div>
-
+            <div class="photo-gallery-controls fade-up">
+                <button class="gallery-page-button" id="gallery-prev" type="button">Previous</button>
+                <div class="gallery-page-indicator" id="gallery-page-indicator">Page 1 / 1</div>
+                <button class="gallery-page-button" id="gallery-next" type="button">Next</button>
             </div>
+
         </div>
     </section>
+
+    <div class="gallery-lightbox" id="gallery-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Expanded gallery image">
+        <div class="gallery-lightbox-dialog">
+            <button class="gallery-lightbox-close" id="gallery-lightbox-close" type="button" aria-label="Close image overlay">&times;</button>
+            <img class="gallery-lightbox-image" id="gallery-lightbox-image" src="" alt="">
+        </div>
+    </div>
 
     <!-- ─── CONTACT ─── -->
     <section id="contact" aria-labelledby="contact-heading">
@@ -1203,6 +1346,103 @@
                 window.scrollTo({ top, behavior: 'smooth' });
             });
         });
+
+        // ─── Paginated gallery ───
+        const galleryImages = Array.from({ length: 35 }, (_, index) => {
+            const imageNumber = String(index + 1).padStart(4, '0');
+            return {
+                src: `images/gallery/IMG-20260328-WA${imageNumber}.jpg`,
+                alt: `JCM Garage Door gallery image ${index + 1}`
+            };
+        });
+
+        const galleryGrid = document.getElementById('photo-gallery-grid');
+        const galleryPrevButton = document.getElementById('gallery-prev');
+        const galleryNextButton = document.getElementById('gallery-next');
+        const galleryPageIndicator = document.getElementById('gallery-page-indicator');
+        const galleryLightbox = document.getElementById('gallery-lightbox');
+        const galleryLightboxImage = document.getElementById('gallery-lightbox-image');
+        const galleryLightboxClose = document.getElementById('gallery-lightbox-close');
+        const galleryItemsPerPage = 9;
+        const galleryTotalPages = Math.ceil(galleryImages.length / galleryItemsPerPage);
+        let galleryCurrentPage = 1;
+        let galleryLightboxResetTimer = null;
+
+        function openGalleryLightbox(src, alt) {
+            if (galleryLightboxResetTimer) {
+                clearTimeout(galleryLightboxResetTimer);
+                galleryLightboxResetTimer = null;
+            }
+
+            galleryLightboxImage.src = src;
+            galleryLightboxImage.alt = alt;
+            galleryLightbox.classList.add('open');
+            galleryLightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGalleryLightbox() {
+            galleryLightbox.classList.remove('open');
+            galleryLightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+
+            galleryLightboxResetTimer = setTimeout(() => {
+                if (!galleryLightbox.classList.contains('open')) {
+                    galleryLightboxImage.src = '';
+                    galleryLightboxImage.alt = '';
+                }
+                galleryLightboxResetTimer = null;
+            }, 250);
+        }
+
+        function renderGalleryPage(pageNumber) {
+            const startIndex = (pageNumber - 1) * galleryItemsPerPage;
+            const pageImages = galleryImages.slice(startIndex, startIndex + galleryItemsPerPage);
+
+            galleryGrid.innerHTML = pageImages.map(image => `
+                <figure class="photo-gallery-item">
+                    <img src="${image.src}" alt="${image.alt}" loading="lazy">
+                </figure>
+            `).join('');
+
+            galleryPageIndicator.textContent = `Page ${pageNumber} / ${galleryTotalPages}`;
+            galleryPrevButton.disabled = pageNumber === 1;
+            galleryNextButton.disabled = pageNumber === galleryTotalPages;
+        }
+
+        galleryGrid.addEventListener('click', event => {
+            const image = event.target.closest('.photo-gallery-item img');
+            if (!image) return;
+            openGalleryLightbox(image.src, image.alt);
+        });
+
+        galleryPrevButton.addEventListener('click', () => {
+            if (galleryCurrentPage === 1) return;
+            galleryCurrentPage -= 1;
+            renderGalleryPage(galleryCurrentPage);
+        });
+
+        galleryNextButton.addEventListener('click', () => {
+            if (galleryCurrentPage === galleryTotalPages) return;
+            galleryCurrentPage += 1;
+            renderGalleryPage(galleryCurrentPage);
+        });
+
+        galleryLightboxClose.addEventListener('click', closeGalleryLightbox);
+
+        galleryLightbox.addEventListener('click', event => {
+            if (event.target === galleryLightbox) {
+                closeGalleryLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && galleryLightbox.classList.contains('open')) {
+                closeGalleryLightbox();
+            }
+        });
+
+        renderGalleryPage(galleryCurrentPage);
 
         // ─── Fade-up on scroll (IntersectionObserver) ───
         const fadeObserver = new IntersectionObserver(entries => {
