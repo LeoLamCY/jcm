@@ -389,56 +389,95 @@
             margin: 0 auto;
         }
 
+        .why-us-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+            gap: 3rem;
+            align-items: stretch;
+        }
+
+        .why-us-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            height: 100%;
+        }
+
         .why-us-header {
-            text-align: center;
-            margin-bottom: 4.5rem;
+            text-align: left;
         }
 
         .why-us-header p {
             color: var(--gray);
             font-size: 1rem;
             margin-top: 1rem;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 420px;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-            background: var(--cream-pale);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
         }
 
         .feature-card {
-            background: white;
-            padding: 2.8rem 2rem 2.5rem;
-            transition: background 0.22s;
+            background: var(--cream-bg);
+            padding: 2rem 1.7rem 1.85rem;
+            border: 1px solid rgba(137, 93, 57, 0.14);
+            border-radius: 18px;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s;
         }
 
         .feature-card:hover {
-            background: var(--cream-bg);
+            background: white;
+            transform: translateY(-4px);
+            box-shadow: 0 14px 34px rgba(74, 44, 14, 0.1);
         }
 
         .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 1.1rem;
+            font-size: 1.5rem;
+            width: 46px;
+            height: 46px;
+            margin-bottom: 1rem;
             display: block;
             color: var(--brown-primary);
+            background: rgba(137, 93, 57, 0.1);
+            border-radius: 999px;
+            line-height: 46px;
+            text-align: center;
         }
 
         .feature-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
+            font-size: 1.02rem;
             font-weight: 600;
             color: var(--brown-dark);
             margin-bottom: 0.65rem;
         }
 
         .feature-card p {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--gray);
-            line-height: 1.72;
+            line-height: 1.68;
+        }
+
+        .why-us-image-wrap {
+            flex: 1;
+            overflow: hidden;
+            border-radius: 22px;
+            background: var(--cream-bg);
+            border: 1px solid rgba(137, 93, 57, 0.16);
+            box-shadow: 0 16px 40px rgba(74, 44, 14, 0.12);
+            min-height: 0;
+        }
+
+        .why-us-image {
+            width: 100%;
+            height: 100%;
+            min-height: 560px;
+            display: block;
+            object-fit: cover;
+            object-position: center top;
         }
 
         /* ─── GALLERY ─── */
@@ -922,6 +961,19 @@
                 border-top: 1px solid var(--cream-pale);
             }
 
+            .why-us-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .why-us-panel {
+                order: -1;
+            }
+
+            .why-us-image {
+                height: 360px;
+                min-height: 0;
+            }
+
             .features-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -965,6 +1017,11 @@
             #contact { padding: 5rem 1.5rem; }
 
             .features-grid { grid-template-columns: 1fr; }
+
+            .why-us-image {
+                height: 300px;
+                min-height: 0;
+            }
 
             .gallery-grid {
                 grid-template-columns: 1fr;
@@ -1163,42 +1220,50 @@
     <section id="why-us" aria-labelledby="why-us-heading">
         <div class="why-us-inner">
 
-            <div class="why-us-header fade-up">
-                <span class="section-label">Why Choose Us</span>
-                <h2 class="section-heading" id="why-us-heading">The JCM Difference</h2>
-                <p>We're committed to quality, reliability, and customer satisfaction on every job we take on.</p>
-            </div>
+            <div class="why-us-layout">
+                <div class="features-grid fade-up">
+                    <div class="feature-card">
+                        <i class="feature-icon fa-solid fa-screwdriver-wrench" aria-hidden="true"></i>
+                        <h3>Expert Technicians</h3>
+                        <p>Skilled professionals with years of hands-on experience servicing all makes and models of garage doors.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="feature-icon fa-solid fa-bolt" aria-hidden="true"></i>
+                        <h3>Fast Response</h3>
+                        <p>Quick response times for all service calls. We know your time is valuable and we work efficiently.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="feature-icon fa-solid fa-circle-check" aria-hidden="true"></i>
+                        <h3>Quality Guarantee</h3>
+                        <p>We stand behind all our work. Quality workmanship and satisfaction guaranteed on every job.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="feature-icon fa-solid fa-house" aria-hidden="true"></i>
+                        <h3>Local Service</h3>
+                        <p>Proudly serving the local community. We're your neighbours and we take that responsibility seriously.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="feature-icon fa-solid fa-shield-halved" aria-hidden="true"></i>
+                        <h3>Licensed &amp; Insured</h3>
+                        <p>Fully licensed and insured for your peace of mind. Professional service you can count on.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="feature-icon fa-solid fa-comments" aria-hidden="true"></i>
+                        <h3>Customer First</h3>
+                        <p>Transparent pricing, clear communication, and a genuine commitment to exceeding your expectations.</p>
+                    </div>
+                </div>
 
-            <div class="features-grid fade-up">
-                <div class="feature-card">
-                    <i class="feature-icon fa-solid fa-screwdriver-wrench" aria-hidden="true"></i>
-                    <h3>Expert Technicians</h3>
-                    <p>Skilled professionals with years of hands-on experience servicing all makes and models of garage doors.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="feature-icon fa-solid fa-bolt" aria-hidden="true"></i>
-                    <h3>Fast Response</h3>
-                    <p>Quick response times for all service calls. We know your time is valuable and we work efficiently.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="feature-icon fa-solid fa-circle-check" aria-hidden="true"></i>
-                    <h3>Quality Guarantee</h3>
-                    <p>We stand behind all our work. Quality workmanship and satisfaction guaranteed on every job.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="feature-icon fa-solid fa-house" aria-hidden="true"></i>
-                    <h3>Local Service</h3>
-                    <p>Proudly serving the local community. We're your neighbours and we take that responsibility seriously.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="feature-icon fa-solid fa-shield-halved" aria-hidden="true"></i>
-                    <h3>Licensed &amp; Insured</h3>
-                    <p>Fully licensed and insured for your peace of mind. Professional service you can count on.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="feature-icon fa-solid fa-comments" aria-hidden="true"></i>
-                    <h3>Customer First</h3>
-                    <p>Transparent pricing, clear communication, and a genuine commitment to exceeding your expectations.</p>
+                <div class="why-us-panel fade-up">
+                    <div class="why-us-header">
+                        <span class="section-label">Why Choose Us</span>
+                        <h2 class="section-heading" id="why-us-heading">The JCM Difference</h2>
+                        <p>We're committed to quality, reliability, and customer satisfaction on every job we take on.</p>
+                    </div>
+
+                    <div class="why-us-image-wrap">
+                        <img class="why-us-image" src="images/worker.jpg" alt="JCM Garage Door technician at work" loading="lazy">
+                    </div>
                 </div>
             </div>
 
