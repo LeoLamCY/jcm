@@ -206,8 +206,8 @@
         <div class="preview-builder-inner">
             <div class="preview-builder-header fade-up">
                 <span class="section-label">Interactive Preview</span>
-                <h2 class="section-heading" id="door-preview-heading">Preview Your Perfect Garage Door</h2>
-                <p>Build a quick visual starting point in three simple steps. Choose your size, pick a panel layout, and compare window styles before you reach out.</p>
+                <h2 class="section-heading" id="door-preview-heading">Design Your Perfect Garage Door</h2>
+                <p>Build your design in three simple steps, then click the button below to email us your design for a free estimate.</p>
             </div>
 
             <div class="preview-accordion">
@@ -222,7 +222,7 @@
                             <span class="preview-step-index">Step 1</span>
                             <span class="preview-step-title">Choose a size</span>
                         </span>
-                        <span class="preview-trigger-summary" id="preview-summary-size">8' x 7'</span>
+                        <span class="preview-trigger-summary" id="preview-summary-size">Choose one</span>
                         <span class="preview-trigger-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
                     </button>
 
@@ -235,7 +235,7 @@
                             <p class="preview-panel-copy">Start by choosing the garage door width that best fits your opening so you can narrow the preview to the right proportions.</p>
 
                             <div class="preview-choice-grid">
-                                <button class="preview-choice is-selected" type="button" data-preview-group="size" data-preview-value="8' x 7'">
+                                <button class="preview-choice" type="button" data-preview-group="size" data-preview-value="8' x 7'">
                                     <span class="preview-choice-label">8' x 7'</span>
                                 </button>
                                 <button class="preview-choice" type="button" data-preview-group="size" data-preview-value="16' x 7'">
@@ -257,7 +257,7 @@
                             <span class="preview-step-index">Step 2</span>
                             <span class="preview-step-title">Choose a door style</span>
                         </span>
-                        <span class="preview-trigger-summary" id="preview-summary-style">Style 1</span>
+                        <span class="preview-trigger-summary" id="preview-summary-style">Choose one</span>
                         <span class="preview-trigger-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
                     </button>
 
@@ -270,14 +270,14 @@
                             <p class="preview-panel-copy">Compare panel layouts and pick the look that best matches your home's character. You can rename these styles later once your final catalog is ready.</p>
 
                             <div class="preview-choice-grid">
-                                <button class="preview-choice is-selected" type="button" data-preview-group="style" data-preview-value="Style 1">
-                                    <span class="preview-choice-label">Style 1</span>
+                                <button class="preview-choice" type="button" data-preview-group="style" data-preview-value="Flush">
+                                    <span class="preview-choice-label">Flush</span>
                                 </button>
-                                <button class="preview-choice" type="button" data-preview-group="style" data-preview-value="Style 2">
-                                    <span class="preview-choice-label">Style 2</span>
+                                <button class="preview-choice" type="button" data-preview-group="style" data-preview-value="Long Vertical Stripes">
+                                    <span class="preview-choice-label">Long Vertical Stripes</span>
                                 </button>
-                                <button class="preview-choice" type="button" data-preview-group="style" data-preview-value="Style 3">
-                                    <span class="preview-choice-label">Style 3</span>
+                                <button class="preview-choice" type="button" data-preview-group="style" data-preview-value="Long Ranch">
+                                    <span class="preview-choice-label">Long Ranch</span>
                                 </button>
                             </div>
                         </div>
@@ -295,7 +295,7 @@
                             <span class="preview-step-index">Step 3</span>
                             <span class="preview-step-title">Choose a window style</span>
                         </span>
-                        <span class="preview-trigger-summary" id="preview-summary-window">Arched Stockton</span>
+                        <span class="preview-trigger-summary" id="preview-summary-window">Choose one</span>
                         <span class="preview-trigger-icon" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
                     </button>
 
@@ -306,6 +306,16 @@
                         </div>
                     </div>
                 </article>
+            </div>
+
+            <div class="preview-send-cta fade-up">
+                <p class="preview-send-summary" id="preview-send-summary" hidden></p>
+                <a
+                    class="btn-primary preview-send-button is-disabled"
+                    id="preview-send-button"
+                    href="#"
+                    aria-disabled="true"
+                    tabindex="-1">Email us your design</a>
             </div>
         </div>
     </section>
@@ -365,11 +375,6 @@
                     <p>Mon – Sun: 9:00 AM – 9:00 PM</p>
                 </div>
             </div>
-
-            <div class="contact-cta fade-up">
-                <a href="mailto:Jcmgaragedoor666@gmail.com" class="btn-primary">Send Us an Email</a>
-            </div>
-
         </div>
     </section>
 
@@ -384,7 +389,7 @@
 
             <div class="footer-col">
                 <h4>Services</h4>
-                <ul>
+                <ul class="footer-services-list">
                     <li>Garage Door Repair</li>
                     <li>New Door Installation</li>
                     <li>Spring &amp; Cable Repair</li>
@@ -471,10 +476,15 @@
             style: document.getElementById('preview-summary-style'),
             window: document.getElementById('preview-summary-window')
         };
+        const previewSummaryFallbacks = {
+            size: 'Choose one',
+            style: 'Choose one',
+            window: 'Choose one'
+        };
         const previewSelections = {
-            size: "8' x 7'",
-            style: 'Style 1',
-            window: 'Arched Stockton'
+            size: '',
+            style: '',
+            window: ''
         };
         const previewWindowFiles = [
             'L07-Arched-Stockton-470x66.png',
@@ -487,6 +497,8 @@
             'L14-Sunburst-Long-470x66.png'
         ];
         const windowStyleGrid = document.getElementById('window-style-grid');
+        const previewSendSummary = document.getElementById('preview-send-summary');
+        const previewSendButton = document.getElementById('preview-send-button');
 
         function formatWindowStyleLabel(filename) {
             return filename
@@ -497,7 +509,36 @@
         }
 
         function updatePreviewSummary(group) {
-            previewSummaries[group].textContent = previewSelections[group];
+            previewSummaries[group].textContent = previewSelections[group] || previewSummaryFallbacks[group];
+        }
+
+        function getPreviewEmailHref() {
+            const subject = 'Estimate request from website';
+            const body = [
+                'Hello JCM Garage Door,',
+                '',
+                'Here is my garage door design selection for a free estimate:',
+                '',
+                `Size: ${previewSelections.size || 'Not selected'}`,
+                `Door style: ${previewSelections.style || 'Not selected'}`,
+                `Window style: ${previewSelections.window || 'Not selected'}`
+            ].join('\n');
+
+            return `mailto:Jcmgaragedoor666@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function updatePreviewSendButton() {
+            const isComplete = Object.values(previewSelections).every(Boolean);
+
+            previewSendSummary.hidden = !isComplete;
+            previewSendSummary.textContent = isComplete
+                ? `Your design: ${previewSelections.size} door(s) in ${previewSelections.style} style with ${previewSelections.window} style windows.`
+                : '';
+
+            previewSendButton.classList.toggle('is-disabled', !isComplete);
+            previewSendButton.setAttribute('aria-disabled', String(!isComplete));
+            previewSendButton.tabIndex = isComplete ? 0 : -1;
+            previewSendButton.href = isComplete ? getPreviewEmailHref() : '#';
         }
 
         function renderWindowChoices() {
@@ -516,6 +557,7 @@
         function setPreviewSelection(group, value) {
             previewSelections[group] = value;
             updatePreviewSummary(group);
+            updatePreviewSendButton();
 
             if (group === 'window') {
                 renderWindowChoices();
@@ -555,6 +597,7 @@
         updatePreviewSummary('size');
         updatePreviewSummary('style');
         updatePreviewSummary('window');
+        updatePreviewSendButton();
 
         // ─── Paginated gallery ───
         const galleryImages = Array.from({ length: 35 }, (_, index) => {

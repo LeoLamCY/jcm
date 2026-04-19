@@ -295,7 +295,7 @@ nav {
 /* SERVICES */
 #services {
     background: var(--cream-bg);
-    padding: 8rem 0;
+    padding: 6rem 0;
 }
 
 .services-inner {
@@ -368,7 +368,7 @@ nav {
 /* DOOR PREVIEW BUILDER */
 #door-preview {
     position: relative;
-    padding: 8rem 2rem;
+    padding: 6rem 2rem;
     background:
         radial-gradient(circle at top right, rgba(160, 132, 92, 0.16), transparent 34%),
         linear-gradient(180deg, white 0%, var(--cream-bg) 100%);
@@ -572,13 +572,14 @@ nav {
     font-weight: 700;
     text-align: left;
     cursor: pointer;
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    transition: border-color 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease, color 0.22s ease;
 }
 
 .preview-choice:hover {
-    transform: translateY(-2px);
-    border-color: rgba(137, 93, 57, 0.5);
-    box-shadow: 0 10px 24px rgba(74, 44, 14, 0.09);
+    background: var(--cream-light);
+    border-color: var(--brown-light);
+    color: var(--brown-primary);
+    box-shadow: 0 8px 20px rgba(74, 44, 14, 0.08);
 }
 
 .preview-choice.is-selected {
@@ -610,10 +611,44 @@ nav {
     color: var(--brown-dark);
 }
 
+.preview-send-cta {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.preview-send-summary {
+    margin: 0 0 1rem;
+    color: var(--brown-dark);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.preview-send-button {
+    min-width: 180px;
+}
+
+.preview-send-button:not([aria-disabled="true"]):hover,
+.preview-send-button:not([aria-disabled="true"]):focus-visible {
+    background: var(--brown-primary);
+    border-color: var(--brown-primary);
+    color: white;
+    outline: none;
+    box-shadow: 0 12px 28px rgba(74, 44, 14, 0.16);
+}
+
+.preview-send-button.is-disabled,
+.preview-send-button[aria-disabled="true"] {
+    background: rgba(160, 132, 92, 0.18);
+    border-color: rgba(160, 132, 92, 0.18);
+    color: rgba(74, 44, 14, 0.45);
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
 /* WHY CHOOSE US */
 #why-us {
     background: white;
-    padding: 8rem 2rem;
+    padding: 6rem 2rem;
 }
 
 .why-us-inner {
@@ -715,7 +750,7 @@ nav {
 /* GALLERY */
 #gallery {
     background: var(--cream-bg);
-    padding: 8rem 2rem;
+    padding: 6rem 2rem;
 }
 
 .gallery-inner {
@@ -791,7 +826,7 @@ nav {
 /* PAGINATED GALLERY */
 #gallery {
     background: var(--cream-bg);
-    padding: 8rem 2rem;
+    padding: 6rem 2rem;
 }
 
 .photo-gallery-inner {
@@ -951,7 +986,7 @@ nav {
 /* CONTACT */
 #contact {
     background: linear-gradient(135deg, var(--brown-primary) 0%, var(--brown-dark) 100%);
-    padding: 8rem 2rem;
+    padding: 6rem 2rem;
     color: white;
 }
 
@@ -1078,12 +1113,29 @@ footer {
     position: relative;
 }
 
-.footer-col ul li::before {
+.footer-col ul:not(.footer-services-list) li::before {
     content: '→';
     position: absolute;
     left: 0;
     color: var(--brown-light);
     opacity: 0.7;
+}
+
+.footer-services-list li {
+    padding-left: 1.35rem;
+}
+
+.footer-services-list li::before {
+    content: '';
+    position: absolute;
+    left: 0.05rem;
+    top: 0.42rem;
+    width: 7px;
+    height: 7px;
+    border: 1.5px solid var(--cream-light);
+    background: transparent;
+    opacity: 0.82;
+    transform: rotate(45deg);
 }
 
 .footer-contact-line {
@@ -1268,7 +1320,7 @@ footer {
     #door-preview,
     #showcase,
     #gallery,
-    #contact { padding: 5rem 1.5rem; }
+    #contact { padding: 4rem 1.5rem; }
 
     .features-grid { grid-template-columns: 1fr; }
 
