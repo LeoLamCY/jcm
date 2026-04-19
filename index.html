@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css">
     <style>
         /* ─── Reset & Custom Properties ─── */
         *, *::before, *::after {
@@ -337,36 +338,30 @@
         }
 
         .services-list {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0;
         }
 
         .service-item {
-            display: grid;
-            grid-template-columns: 52px 1fr;
-            gap: 1.4rem;
+            display: block;
             align-items: start;
-            padding: 1.7rem 0;
+            padding: 1.5rem 1.25rem;
             border-bottom: 1px solid var(--cream-pale);
-            transition: padding-left 0.2s;
+            border-right: 1px solid var(--cream-pale);
+            transition: transform 0.2s ease;
         }
 
-        .service-item:first-child {
+        .service-item:nth-child(-n + 2) {
             border-top: 1px solid var(--cream-pale);
         }
 
         .service-item:hover {
-            padding-left: 6px;
+            transform: translateX(6px);
         }
 
-        .service-num {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--brown-light);
-            opacity: 0.55;
-            padding-top: 3px;
-            line-height: 1;
+        .service-item:nth-child(2n) {
+            border-right: none;
         }
 
         .service-text h3 {
@@ -429,6 +424,7 @@
             font-size: 2rem;
             margin-bottom: 1.1rem;
             display: block;
+            color: var(--brown-primary);
         }
 
         .feature-card h3 {
@@ -567,6 +563,7 @@
             font-size: 2rem;
             display: block;
             margin-bottom: 1.1rem;
+            color: var(--cream-light);
         }
 
         .contact-item h4 {
@@ -681,6 +678,11 @@
             flex-shrink: 0;
         }
 
+        .footer-contact-icon {
+            color: var(--cream-light);
+            margin-top: 1px;
+        }
+
         .footer-bottom {
             max-width: 1280px;
             margin: 0 auto;
@@ -740,6 +742,23 @@
 
             .services-intro {
                 position: static;
+            }
+
+            .services-list {
+                grid-template-columns: 1fr;
+            }
+
+            .service-item {
+                padding-right: 0;
+                border-right: none;
+            }
+
+            .service-item:nth-child(-n + 2) {
+                border-top: none;
+            }
+
+            .service-item:first-child {
+                border-top: 1px solid var(--cream-pale);
             }
 
             .features-grid {
@@ -873,11 +892,10 @@
                 <a href="#contact" class="btn-outline">Get Free Estimate</a>
             </div>
 
-            <!-- Right: numbered service list -->
+            <!-- Right: service list -->
             <div class="services-list" role="list">
 
                 <div class="service-item fade-up" role="listitem">
-                    <span class="service-num" aria-hidden="true">01</span>
                     <div class="service-text">
                         <h3>Garage Door Repair</h3>
                         <p>Professional repair services for all types of garage doors. We diagnose and fix issues quickly and efficiently.</p>
@@ -885,7 +903,6 @@
                 </div>
 
                 <div class="service-item fade-up" role="listitem">
-                    <span class="service-num" aria-hidden="true">02</span>
                     <div class="service-text">
                         <h3>New Garage Door Installation</h3>
                         <p>Complete installation of new garage doors with professional setup and quality assurance.</p>
@@ -893,7 +910,6 @@
                 </div>
 
                 <div class="service-item fade-up" role="listitem">
-                    <span class="service-num" aria-hidden="true">03</span>
                     <div class="service-text">
                         <h3>Spring Repair &amp; Replacement</h3>
                         <p>Expert spring repair and replacement for smooth, safe operation on every cycle.</p>
@@ -901,7 +917,6 @@
                 </div>
 
                 <div class="service-item fade-up" role="listitem">
-                    <span class="service-num" aria-hidden="true">04</span>
                     <div class="service-text">
                         <h3>Cables Repair &amp; Replacement</h3>
                         <p>Professional cable repair and replacement to ensure your garage door operates safely.</p>
@@ -909,7 +924,6 @@
                 </div>
 
                 <div class="service-item fade-up" role="listitem">
-                    <span class="service-num" aria-hidden="true">05</span>
                     <div class="service-text">
                         <h3>Opener Repair &amp; Replacement</h3>
                         <p>Garage door opener repair, replacement, and motor reprogramming for reliable access.</p>
@@ -917,7 +931,6 @@
                 </div>
 
                 <div class="service-item fade-up" role="listitem">
-                    <span class="service-num" aria-hidden="true">06</span>
                     <div class="service-text">
                         <h3>Remote &amp; Keypad Services</h3>
                         <p>Remote replacement, repair, and keypad installation for convenient, secure entry.</p>
@@ -925,7 +938,6 @@
                 </div>
 
                 <div class="service-item fade-up" role="listitem">
-                    <span class="service-num" aria-hidden="true">07</span>
                     <div class="service-text">
                         <h3>Sensors Repair &amp; Replacement</h3>
                         <p>Garage door sensor repair and replacement for enhanced safety and reliable operation.</p>
@@ -933,7 +945,6 @@
                 </div>
 
                 <div class="service-item fade-up" role="listitem">
-                    <span class="service-num" aria-hidden="true">08</span>
                     <div class="service-text">
                         <h3>Panel Repair &amp; Replacement</h3>
                         <p>Panel installation and repair services to restore your door's appearance and structural integrity.</p>
@@ -941,7 +952,6 @@
                 </div>
 
                 <div class="service-item fade-up" role="listitem">
-                    <span class="service-num" aria-hidden="true">09</span>
                     <div class="service-text">
                         <h3>Weatherstrip &amp; Capping</h3>
                         <p>Weatherstrip installation and capping services for better insulation and weather protection.</p>
@@ -949,7 +959,6 @@
                 </div>
 
                 <div class="service-item fade-up" role="listitem">
-                    <span class="service-num" aria-hidden="true">10</span>
                     <div class="service-text">
                         <h3>Maintenance &amp; Tune-Up</h3>
                         <p>Regular maintenance and tune-up services to keep your garage door in peak condition year-round.</p>
@@ -970,34 +979,34 @@
                 <p>We're committed to quality, reliability, and customer satisfaction on every job we take on.</p>
             </div>
 
-            <div class="features-grid">
-                <div class="feature-card fade-up">
-                    <span class="feature-icon" aria-hidden="true">🔧</span>
+            <div class="features-grid fade-up">
+                <div class="feature-card">
+                    <i class="feature-icon fa-solid fa-screwdriver-wrench" aria-hidden="true"></i>
                     <h3>Expert Technicians</h3>
                     <p>Skilled professionals with years of hands-on experience servicing all makes and models of garage doors.</p>
                 </div>
-                <div class="feature-card fade-up">
-                    <span class="feature-icon" aria-hidden="true">⚡</span>
+                <div class="feature-card">
+                    <i class="feature-icon fa-solid fa-bolt" aria-hidden="true"></i>
                     <h3>Fast Response</h3>
                     <p>Quick response times for all service calls. We know your time is valuable and we work efficiently.</p>
                 </div>
-                <div class="feature-card fade-up">
-                    <span class="feature-icon" aria-hidden="true">✅</span>
+                <div class="feature-card">
+                    <i class="feature-icon fa-solid fa-circle-check" aria-hidden="true"></i>
                     <h3>Quality Guarantee</h3>
                     <p>We stand behind all our work. Quality workmanship and satisfaction guaranteed on every job.</p>
                 </div>
-                <div class="feature-card fade-up">
-                    <span class="feature-icon" aria-hidden="true">🏠</span>
+                <div class="feature-card">
+                    <i class="feature-icon fa-solid fa-house" aria-hidden="true"></i>
                     <h3>Local Service</h3>
                     <p>Proudly serving the local community. We're your neighbours and we take that responsibility seriously.</p>
                 </div>
-                <div class="feature-card fade-up">
-                    <span class="feature-icon" aria-hidden="true">🛡️</span>
+                <div class="feature-card">
+                    <i class="feature-icon fa-solid fa-shield-halved" aria-hidden="true"></i>
                     <h3>Licensed &amp; Insured</h3>
                     <p>Fully licensed and insured for your peace of mind. Professional service you can count on.</p>
                 </div>
-                <div class="feature-card fade-up">
-                    <span class="feature-icon" aria-hidden="true">💬</span>
+                <div class="feature-card">
+                    <i class="feature-icon fa-solid fa-comments" aria-hidden="true"></i>
                     <h3>Customer First</h3>
                     <p>Transparent pricing, clear communication, and a genuine commitment to exceeding your expectations.</p>
                 </div>
@@ -1082,17 +1091,17 @@
 
             <div class="contact-grid">
                 <div class="contact-item fade-up">
-                    <span class="contact-icon" aria-hidden="true">📧</span>
+                    <i class="contact-icon fa-solid fa-envelope" aria-hidden="true"></i>
                     <h4>Email Us</h4>
                     <p><a href="mailto:Jcmgaragedoor666@gmail.com">Jcmgaragedoor666@gmail.com</a></p>
                 </div>
                 <div class="contact-item fade-up">
-                    <span class="contact-icon" aria-hidden="true">📞</span>
+                    <i class="contact-icon fa-solid fa-phone-volume" aria-hidden="true"></i>
                     <h4>Call Us</h4>
                     <p><a href="tel:4379883618">(437) 988-3618</a></p>
                 </div>
                 <div class="contact-item fade-up">
-                    <span class="contact-icon" aria-hidden="true">🕐</span>
+                    <i class="contact-icon fa-solid fa-clock" aria-hidden="true"></i>
                     <h4>Service Hours</h4>
                     <p>Mon – Sun: 9:00 AM – 9:00 PM</p>
                 </div>
@@ -1129,15 +1138,15 @@
             <div class="footer-col">
                 <h4>Contact</h4>
                 <div class="footer-contact-line">
-                    <span aria-hidden="true">📧</span>
+                    <i class="footer-contact-icon fa-solid fa-envelope" aria-hidden="true"></i>
                     <a href="mailto:Jcmgaragedoor666@gmail.com">Jcmgaragedoor666@gmail.com</a>
                 </div>
                 <div class="footer-contact-line">
-                    <span aria-hidden="true">📞</span>
+                    <i class="footer-contact-icon fa-solid fa-phone-volume" aria-hidden="true"></i>
                     <a href="tel:4379883618">(437) 988-3618</a>
                 </div>
                 <div class="footer-contact-line">
-                    <span aria-hidden="true">🕐</span>
+                    <i class="footer-contact-icon fa-solid fa-clock" aria-hidden="true"></i>
                     <span>Mon – Sun: 9AM – 9PM</span>
                 </div>
             </div>
