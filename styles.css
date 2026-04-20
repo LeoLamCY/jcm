@@ -1149,6 +1149,19 @@ footer {
     transform: rotate(45deg);
 }
 
+.footer-map-wrap {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+}
+
+.footer-map-wrap iframe {
+    display: block;
+    width: 100%;
+    height: 260px;
+}
+
 .footer-contact-line {
     display: flex;
     align-items: flex-start;
