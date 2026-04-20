@@ -616,6 +616,13 @@ nav {
     text-align: center;
 }
 
+.preview-send-help {
+    margin: 0 0 0.65rem;
+    color: rgba(120, 120, 120, 0.92);
+    font-size: 0.82rem;
+    line-height: 1.6;
+}
+
 .preview-send-summary {
     margin: 0 0 1rem;
     color: var(--brown-dark);
@@ -627,10 +634,14 @@ nav {
     min-width: 180px;
 }
 
+.preview-send-button:not([aria-disabled="true"]) {
+    border: 2px solid var(--brown-dark);
+}
+
 .preview-send-button:not([aria-disabled="true"]):hover,
 .preview-send-button:not([aria-disabled="true"]):focus-visible {
     background: var(--brown-primary);
-    border-color: var(--brown-primary);
+    border-color: var(--brown-dark);
     color: white;
     outline: none;
     box-shadow: 0 12px 28px rgba(74, 44, 14, 0.16);

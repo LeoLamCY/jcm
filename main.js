@@ -71,6 +71,7 @@ const previewWindowFiles = [
     'L14-Sunburst-Long-470x66.png'
 ];
 const windowStyleGrid = document.getElementById('window-style-grid');
+const previewSendHelp = document.querySelector('.preview-send-help');
 const previewSendSummary = document.getElementById('preview-send-summary');
 const previewSendButton = document.getElementById('preview-send-button');
 
@@ -104,6 +105,7 @@ function getPreviewEmailHref() {
 function updatePreviewSendButton() {
     const isComplete = Object.values(previewSelections).every(Boolean);
 
+    previewSendHelp.hidden = isComplete;
     previewSendSummary.hidden = !isComplete;
     previewSendSummary.textContent = isComplete
         ? `Your design: ${previewSelections.size} door(s) in ${previewSelections.style} style with ${previewSelections.window} style windows.`
