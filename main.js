@@ -177,7 +177,6 @@ updatePreviewSendButton();
 
 // Paginated gallery
 const galleryImages = Array.from({ length: 35 }, (_, index) => {
-    if(index === 4) return;
     const imageNumber = String(index + 1).padStart(4, '0');
     return {
         src: `images/gallery/IMG-20260328-WA${imageNumber}.jpg`,
@@ -282,5 +281,3 @@ const fadeObserver = new IntersectionObserver(entries => {
         }
     });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-document.querySelectorAll('.fade-up').forEach(element => fadeObserver.observe(element));
