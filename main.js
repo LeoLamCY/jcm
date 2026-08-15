@@ -177,6 +177,7 @@ updatePreviewSendButton();
 
 // Paginated gallery
 const galleryImages = Array.from({ length: 35 }, (_, index) => {
+    if(index === 4) return;
     const imageNumber = String(index + 1).padStart(4, '0');
     return {
         src: `images/gallery/IMG-20260328-WA${imageNumber}.jpg`,
