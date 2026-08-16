@@ -176,14 +176,6 @@ updatePreviewSummary('window');
 updatePreviewSendButton();
 
 // Paginated gallery
-const galleryImages = Array.from({ length: 35 }, (_, index) => {
-    const imageNumber = String(index + 1).padStart(4, '0');
-    return {
-        src: `images/gallery/IMG-20260328-WA${imageNumber}.jpg`,
-        alt: `JCM Garage Door gallery image ${index + 1}`
-    };
-});
-
 const galleryGrid = document.getElementById('photo-gallery-grid');
 const galleryPrevButton = document.getElementById('gallery-prev');
 const galleryNextButton = document.getElementById('gallery-next');
@@ -192,7 +184,8 @@ const galleryLightbox = document.getElementById('gallery-lightbox');
 const galleryLightboxImage = document.getElementById('gallery-lightbox-image');
 const galleryLightboxClose = document.getElementById('gallery-lightbox-close');
 const galleryItemsPerPage = 9;
-const galleryTotalPages = Math.ceil(galleryImages.length / galleryItemsPerPage);
+let galleryImages = [];
+let galleryTotalPages = 1;
 let galleryCurrentPage = 1;
 let galleryLightboxResetTimer = null;
 
@@ -270,7 +263,16 @@ document.addEventListener('keydown', event => {
     }
 });
 
-renderGalleryPage(galleryCurrentPage);
+fetch('images/gallery/manifest.json')
+    .then(res => res.json())
+    .then(files => {
+        galleryImages = files.map((filename, index) => ({
+            src: `images/gallery/${filename}`,
+            alt: `JCM Garage Door gallery image ${index + 1}`
+        }));
+        galleryTotalPages = Math.ceil(galleryImages.length / galleryItemsPerPage);
+        renderGalleryPage(galleryCurrentPage);
+    });
 
 // Fade-up on scroll
 const fadeObserver = new IntersectionObserver(entries => {
@@ -281,3 +283,5 @@ const fadeObserver = new IntersectionObserver(entries => {
         }
     });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
