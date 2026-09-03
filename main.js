@@ -99,7 +99,7 @@ function getPreviewEmailHref() {
         `Window style: ${previewSelections.window || 'Not selected'}`
     ].join('\n');
 
-    return `mailto:Jcmgaragedoor666@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    return `mailto:jcmgaragedoorca@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 function updatePreviewSendButton() {
